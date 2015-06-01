@@ -11,8 +11,8 @@ return [
         'mysql' => [
             'driver' => 'mysql',
             'host' => 'localhost',
-            'database' => 'l5app1_test',
-            'username' => 'l5app1_test',
+            'database' => 'wired_core_test',
+            'username' => 'root',
             'password' => 'password',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
