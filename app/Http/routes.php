@@ -13,13 +13,32 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('/sendmail', function() {
-   \Mail::raw(' 本日は晴天なり', function($message) {
-       $message->to('tetsuya_takahashi@hotmail.com')
-           ->subject('Test Send From Laravel5');
-   });
-   return ' Mail Send Complete.';
+Route::get('/ping', function() {
+    return response()->json(['hello'=>'world']);
 });
+
+
+// タイトル情報取得API群
+Route::get('/title/get-all', 'TitleController@getAll');
+Route::get('/title/info/{id}', 'TitleController@info');
+Route::get('/title/token/{id}', 'TitleController@token');
+Route::get('/title', 'TitleController@index');
+
+// ユーザー情報取得API群
+Route::get('/user/get-all', 'UserController@getAll');
+Route::get('/user/token/{id}', 'UserController@getToken');
+Route::get('/user', 'UserController@index');
+
+// セーブデータ操作API群
+Route::post('/savedata/save/{user_id}/{title_id}', 'SavedataController@save');
+Route::get('/savedata/load/{user_id}/{title_id}', 'SavedataController@load');
+Route::get('/savedata/create/{user_id}/{title_id}', 'SavedataController@create');
+Route::get('/savedata/delete/{user_id}/{title_id}', 'SavedataController@delete');
+Route::get('savedata', 'SavedataController@index');
+
+/**
+ * ☆☆☆ ここから下は分離作業中 ☆☆☆
+ **/
 
 Route::get('home', 'HomeController@index');
 
@@ -28,7 +47,6 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
-Route::get('/savedata', 'SavedataController@index');
 
 /*
 Route::group(['before' => 'api_auth'], function() {
