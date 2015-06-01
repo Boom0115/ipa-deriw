@@ -24,10 +24,10 @@ class ExampleTest extends TestCase {
         $this->assertEquals(200, $response->getStatusCode());
 
         $user = DB::table('users')->where('id', 1)->first();
-        $this->assertEquals('abc', $user->name);
+        $this->assertEquals('abc', $user['name']);
 
         $user = DB::table('users')->where('id', 2)->first();
-        $this->assertEquals('def', $user->name);
+        $this->assertEquals('def', $user['name']);
     }
 
 }
